@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TheSocialNetwork.AzureStorageAccount;
 using TheSocialNetwork.DataAccess.Contexts;
 using TheSocialNetwork.DomainModel.Entities;
 
@@ -47,7 +48,7 @@ namespace TheSocialNetwork.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Birthday")] Profile profile)
+        public ActionResult Create([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -80,10 +81,19 @@ namespace TheSocialNetwork.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Birthday")] Profile profile)
+        public ActionResult Edit([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile, HttpPostedFileBase binaryFile)
         {
             if (ModelState.IsValid)
             {
+                if (binaryFile != null)
+                {
+                    var blobService = new BlobService();
+                    string newPhotoUrl = blobService.UploadFile("profilepictures", 
+                        binaryFile.FileName, binaryFile.InputStream, 
+                        binaryFile.ContentType);
+                    profile.PhotoUrl = newPhotoUrl;
+                }
+
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

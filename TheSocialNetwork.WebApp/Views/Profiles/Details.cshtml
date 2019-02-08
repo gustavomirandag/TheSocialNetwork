@@ -26,6 +26,14 @@
             @Html.DisplayFor(model => model.Birthday)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrl)
+        </dt>
+
+        <dd>
+            <img src="@Model.PhotoUrl" style="max-height:200px;width:auto"/>
+        </dd>
+
     </dl>
 </div>
 <p>

@@ -25,11 +25,11 @@ namespace TheSocialNetwork.AzureStorageAccount
             CloudBlobContainer blobContainer = blobClient
                 .GetContainerReference(containerName);
 
-            //Permite acesso anônimo a URL do blob
-            blobContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
-
             //Verifico se o container ao qual eu me referêncio já existe ou não e crio se não existe
             blobContainer.CreateIfNotExists();
+
+            //Permite acesso anônimo a URL do blob
+            blobContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
             //Crio uma referência a um blob com nome específico
             CloudBlockBlob blobBlock = blobContainer.GetBlockBlobReference(fileName);

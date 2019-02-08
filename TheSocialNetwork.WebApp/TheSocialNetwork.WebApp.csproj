@@ -289,6 +289,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TheSocialNetwork.AzureStorageAccount\TheSocialNetwork.AzureStorageAccount.csproj">
+      <Project>{5FF77DFE-FC30-4F65-804C-1EBE2D1D1826}</Project>
+      <Name>TheSocialNetwork.AzureStorageAccount</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TheSocialNetwork.DataAccess\TheSocialNetwork.DataAccess.csproj">
       <Project>{6981c853-93d8-417a-a8e5-60bb302bdbf0}</Project>
       <Name>TheSocialNetwork.DataAccess</Name>
@@ -316,7 +320,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61708</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61708/</IISUrl>
+          <IISUrl>http://localhost:61710/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

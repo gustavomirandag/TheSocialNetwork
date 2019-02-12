@@ -66,5 +66,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheSocialNetwork.DomainModel\TheSocialNetwork.DomainModel.csproj">
+      <Project>{A6EE1A28-54AF-43C8-A56C-F83AA4897CF8}</Project>
+      <Name>TheSocialNetwork.DomainModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

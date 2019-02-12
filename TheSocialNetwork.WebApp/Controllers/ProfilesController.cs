@@ -9,12 +9,20 @@ using System.Web.Mvc;
 using TheSocialNetwork.AzureStorageAccount;
 using TheSocialNetwork.DataAccess.Contexts;
 using TheSocialNetwork.DomainModel.Entities;
+using TheSocialNetwork.DomainModel.Interfaces.Infrastructure.StorageService;
 
 namespace TheSocialNetwork.WebApp.Controllers
 {
     public class ProfilesController : Controller
     {
         private SocialNetworkContext db = new SocialNetworkContext();
+        private readonly IFileService _fileService;
+
+        public ProfilesController()
+        {
+            //Simulando uma injeção de dependência
+            _fileService = new BlobService();
+        }
 
         // GET: Profiles
         public ActionResult Index()
@@ -87,8 +95,7 @@ namespace TheSocialNetwork.WebApp.Controllers
             {
                 if (binaryFile != null)
                 {
-                    var blobService = new BlobService();
-                    string newPhotoUrl = blobService.UploadFile("profilepictures", 
+                    string newPhotoUrl = _fileService.UploadFile("profilepictures", 
                         binaryFile.FileName, binaryFile.InputStream, 
                         binaryFile.ContentType);
                     profile.PhotoUrl = newPhotoUrl;

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="StorageAccountConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=thesocialnetworkaccount;AccountKey=HJ7hzz5Pw1E3ADdiAeLEYufYf5N14Hbx4VxpqEgwZBKe2PGoO0+7Y52xyk4lfSRyC9pQoJT1UWsNHujHRbxFHw==;EndpointSuffix=core.windows.net</Value>
     </Setting>
   </Settings>
 </SettingsFile>

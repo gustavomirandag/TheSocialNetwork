@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheSocialNetwork.DomainModel.Interfaces.Infrastructure.StorageService;
 
 namespace TheSocialNetwork.AzureStorageAccount
 {
-    public class BlobService
+    public class BlobService : IFileService
     {
         public string UploadFile(string containerName, string fileName, Stream file, string contentType)
         {

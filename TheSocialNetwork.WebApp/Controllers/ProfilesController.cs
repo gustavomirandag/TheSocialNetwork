@@ -27,7 +27,8 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            return View(db.Profiles.ToList());
+            return RedirectToAction("Index", "Home");
+            //return View(db.Profiles.ToList());
         }
 
         // GET: Profiles/Details/5
@@ -48,6 +49,16 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles/Create
         public ActionResult Create()
         {
+            if (Session["profileId"] == null)
+                RedirectToAction("Index", "Home");
+
+            //Por segurança, se o usuário tentar chamar a ação de criação de perfil
+            //sem estar autenticado (com profile na Session), mando ele de volta pra
+            //página principal
+            if (Session["profileId"] == null)
+                return RedirectToAction("Index", "Home");
+
+            //Se existe um perfil na Session, termino de preencher ele
             return View();
         }
 
@@ -56,11 +67,18 @@ namespace TheSocialNetwork.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile)
+        public ActionResult Create([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile, HttpPostedFileBase binaryFile)
         {
             if (ModelState.IsValid)
             {
-                profile.Id = Guid.NewGuid();
+                if (binaryFile != null)
+                {
+                    string newPhotoUrl = _fileService.UploadFile("profilepictures",
+                        binaryFile.FileName, binaryFile.InputStream,
+                        binaryFile.ContentType);
+                    profile.PhotoUrl = newPhotoUrl;
+                }
+                profile.Id = Guid.Parse(Session["profileId"].ToString());
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,10 +90,14 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles/Edit/5
         public ActionResult Edit(Guid? id)
         {
-            if (id == null)
+            if (Session["profileId"] == null)
+                RedirectToAction("Index", "Home");
+
+            if (id == null || id.ToString() != Session["profileId"].ToString())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Profile profile = db.Profiles.Find(id);
             if (profile == null)
             {
@@ -111,7 +133,10 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles/Delete/5
         public ActionResult Delete(Guid? id)
         {
-            if (id == null)
+            if (Session["profileId"] == null)
+                RedirectToAction("Index", "Home");
+
+            if (id == null || id.ToString() != Session["profileId"].ToString())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

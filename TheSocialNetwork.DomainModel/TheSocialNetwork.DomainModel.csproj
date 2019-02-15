@@ -45,10 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Notification.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Profile.cs" />
-    <Compile Include="Interfaces\Infrastructure\StorageService\IFileService.cs" />
+    <Compile Include="Interfaces\Repositories\IPhotoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificationRepository.cs" />
-    <Compile Include="Interfaces\Services\INotificationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

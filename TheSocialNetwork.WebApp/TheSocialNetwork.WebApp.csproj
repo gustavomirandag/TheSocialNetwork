@@ -301,6 +301,10 @@
       <Project>{a6ee1a28-54af-43c8-a56c-f83aa4897cf8}</Project>
       <Name>TheSocialNetwork.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TheSocialNetwork.DomainService\TheSocialNetwork.DomainService.csproj">
+      <Project>{A02CB555-0887-410F-8F09-C10E89279315}</Project>
+      <Name>TheSocialNetwork.DomainService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

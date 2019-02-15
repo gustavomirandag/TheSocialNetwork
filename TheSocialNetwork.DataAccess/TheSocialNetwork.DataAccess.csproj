@@ -56,9 +56,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repositories\NotificationAzureQueueRepository.cs" />
+    <Compile Include="Repositories\NotificationSqlServerRepository.cs" />
+    <Compile Include="Repositories\PhotoAzureBlobRepository.cs" />
+    <Compile Include="Repositories\PhotoLocalFileRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

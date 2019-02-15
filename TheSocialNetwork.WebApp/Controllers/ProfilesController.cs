@@ -8,20 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using TheSocialNetwork.AzureStorageAccount;
 using TheSocialNetwork.DataAccess.Contexts;
+using TheSocialNetwork.DataAccess.Repositories;
 using TheSocialNetwork.DomainModel.Entities;
-using TheSocialNetwork.DomainModel.Interfaces.Infrastructure.StorageService;
+using TheSocialNetwork.DomainService;
 
 namespace TheSocialNetwork.WebApp.Controllers
 {
     public class ProfilesController : Controller
     {
         private SocialNetworkContext db = new SocialNetworkContext();
-        private readonly IFileService _fileService;
+        private readonly PhotoService _fileService;
 
         public ProfilesController()
         {
             //Simulando uma injeção de dependência
-            _fileService = new BlobService();
+            _fileService = new PhotoService(new PhotoLocalFileRepository());
         }
 
         // GET: Profiles
@@ -73,9 +74,14 @@ namespace TheSocialNetwork.WebApp.Controllers
             {
                 if (binaryFile != null)
                 {
-                    string newPhotoUrl = _fileService.UploadFile("profilepictures",
-                        binaryFile.FileName, binaryFile.InputStream,
-                        binaryFile.ContentType);
+                    var photo = new Photo
+                    {
+                        ContainerName = "profilepictures",
+                        FileName = binaryFile.FileName,
+                        BinaryContent = binaryFile.InputStream,
+                        ContentType = binaryFile.ContentType
+                    };
+                    string newPhotoUrl = _fileService.UploadPhoto(photo);
                     profile.PhotoUrl = newPhotoUrl;
                 }
                 profile.Id = Guid.Parse(Session["profileId"].ToString());
@@ -117,9 +123,14 @@ namespace TheSocialNetwork.WebApp.Controllers
             {
                 if (binaryFile != null)
                 {
-                    string newPhotoUrl = _fileService.UploadFile("profilepictures", 
-                        binaryFile.FileName, binaryFile.InputStream, 
-                        binaryFile.ContentType);
+                    var photo = new Photo
+                    {
+                        ContainerName = "profilepictures",
+                        FileName = binaryFile.FileName,
+                        BinaryContent = binaryFile.InputStream,
+                        ContentType = binaryFile.ContentType
+                    };
+                    string newPhotoUrl = _fileService.UploadPhoto(photo);
                     profile.PhotoUrl = newPhotoUrl;
                 }
 

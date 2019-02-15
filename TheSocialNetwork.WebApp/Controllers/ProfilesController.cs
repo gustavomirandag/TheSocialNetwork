@@ -81,7 +81,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                 profile.Id = Guid.Parse(Session["profileId"].ToString());
                 db.Profiles.Add(profile);
                 db.SaveChanges();
-                return RedirectToAction("Details", new { @id = Session["profileId"].ToString() });
+                return RedirectToAction("Details", new {@id = Session["profileId"].ToString()});
             }
 
             return View(profile);

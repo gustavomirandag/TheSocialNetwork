@@ -55,6 +55,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\NotificationAzureQueueRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -65,10 +66,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TheSocialNetwork.AzureStorageAccount\TheSocialNetwork.AzureStorageAccount.csproj">
+      <Project>{5FF77DFE-FC30-4F65-804C-1EBE2D1D1826}</Project>
+      <Name>TheSocialNetwork.AzureStorageAccount</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TheSocialNetwork.DomainModel\TheSocialNetwork.DomainModel.csproj">
       <Project>{A6EE1A28-54AF-43C8-A56C-F83AA4897CF8}</Project>
       <Name>TheSocialNetwork.DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,5 +13,15 @@ namespace TheSocialNetwork.DomainModel.Entities
         public Profile Sender { get; set; }
         public Profile Recipient { get; set; }
         public DateTime SentDateTime { get; set; }
+
+        public static Notification Parse(string value)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Notification>(value);
+        }
+
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
     }
 }

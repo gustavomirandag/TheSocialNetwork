@@ -11,6 +11,7 @@ namespace TheSocialNetwork.DataAccess.Contexts
     public class SocialNetworkContext : DbContext
     {
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public SocialNetworkContext() 
             : base(TheSocialNetwork.DataAccess.

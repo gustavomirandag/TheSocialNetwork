@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="PhotoService.cs" />
     <Compile Include="NotificationService.cs" />
+    <Compile Include="ProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

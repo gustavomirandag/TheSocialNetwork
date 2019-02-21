@@ -50,6 +50,7 @@
     <Compile Include="Entities\Profile.cs" />
     <Compile Include="Interfaces\Repositories\IPhotoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificationRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

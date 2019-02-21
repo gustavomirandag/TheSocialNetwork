@@ -16,13 +16,14 @@ namespace TheSocialNetwork.WebApp.Controllers
 {
     public class ProfilesController : Controller
     {
-        private SocialNetworkContext db = new SocialNetworkContext();
+        private ProfileService _profileService = new ProfileService(new ProfileSqlServerRepository());
+        //private SocialNetworkContext db = new SocialNetworkContext();
         private readonly PhotoService _fileService;
 
         public ProfilesController()
         {
             //Simulando uma injeção de dependência
-            _fileService = new PhotoService(new PhotoLocalFileRepository());
+            _fileService = new PhotoService(new PhotoAzureBlobRepository());
         }
 
         // GET: Profiles
@@ -85,8 +86,9 @@ namespace TheSocialNetwork.WebApp.Controllers
                     profile.PhotoUrl = newPhotoUrl;
                 }
                 profile.Id = Guid.Parse(Session["profileId"].ToString());
-                db.Profiles.Add(profile);
-                db.SaveChanges();
+                //db.Profiles.Add(profile);
+                //db.SaveChanges();
+                _profileService.CreateProfile(profile);
                 return RedirectToAction("Details", new {@id = Session["profileId"].ToString()});
             }
 
@@ -94,7 +96,7 @@ namespace TheSocialNetwork.WebApp.Controllers
         }
 
         // GET: Profiles/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(Guid id)
         {
             if (Session["profileId"] == null)
                 RedirectToAction("Index", "Home");
@@ -103,8 +105,9 @@ namespace TheSocialNetwork.WebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            Profile profile = db.Profiles.Find(id);
+
+            //Profile profile = db.Profiles.Find(id);
+            Profile profile = _profileService.GetProfile(id);
             if (profile == null)
             {
                 return HttpNotFound();

@@ -14,7 +14,17 @@ namespace TheSocialNetwork.DataAccess.Repositories
         public string Create(Photo photo)
         {
             var blobService = new BlobService();
+
             return blobService.UploadFile(photo.ContainerName,
+                photo.FileName, photo.BinaryContent,
+                photo.ContentType);
+        }
+
+        public async Task<string> CreateAsync(Photo photo)
+        {
+            var blobService = new BlobService();
+
+            return await blobService.UploadFileAsync(photo.ContainerName,
                 photo.FileName, photo.BinaryContent,
                 photo.ContentType);
         }

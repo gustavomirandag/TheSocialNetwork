@@ -43,7 +43,6 @@ namespace TheSocialNetwork.DomainService
                 .Where(p => p.Name.ToLower().Contains(name.ToLower()));
         }
 
-
         public IEnumerable<Profile> SearchProfileByBirthday(DateTime birthday)
         {
             return _profileRepository.ReadAll()

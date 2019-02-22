@@ -10,5 +10,6 @@ namespace TheSocialNetwork.DomainModel.Interfaces.Repositories
     public interface IPhotoRepository
     {
         string Create(Photo photo);
+        Task<string> CreateAsync(Photo photo);
     }
 }

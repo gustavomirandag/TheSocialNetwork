@@ -120,7 +120,7 @@ namespace TheSocialNetwork.WebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile, HttpPostedFileBase binaryFile)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Birthday,PhotoUrl")] Profile profile, HttpPostedFileBase binaryFile)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                         BinaryContent = binaryFile.InputStream,
                         ContentType = binaryFile.ContentType
                     };
-                    string newPhotoUrl = _fileService.UploadPhoto(photo);
+                    string newPhotoUrl = _fileService.UploadPhotoAsync(photo);
                     profile.PhotoUrl = newPhotoUrl;
                 }
 

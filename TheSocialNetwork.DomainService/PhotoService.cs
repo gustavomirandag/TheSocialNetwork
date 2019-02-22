@@ -21,5 +21,10 @@ namespace TheSocialNetwork.DomainService
         {
             return _photoRepository.Create(photo);
         }
+
+        public string UploadPhotoAsync(Photo photo)
+        {
+            return _photoRepository.Create(photo);
+        }
     }
 }

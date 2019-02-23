@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,17 @@ namespace TheSocialNetwork.DomainModel.Entities
 {
     public class File
     {
+        public Guid Id { get; set; }
         public string ContainerName { get; set; }
         public string FileName { get; set; }
-        public Stream BinaryContent { get; set; } //Imagem
+        [NotMapped]
+        public Stream BinaryContent { get; set; } //Imagem (não armazena no BD)
+        public string Url { get; set; }
         public string ContentType { get; set; }
+
+        public File()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

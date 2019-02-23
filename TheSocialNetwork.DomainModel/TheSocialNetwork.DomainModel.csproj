@@ -35,6 +35,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Photo.cs" />
+    <Compile Include="Entities\PhotoAlbum.cs" />
     <Compile Include="Entities\Profile.cs" />
     <Compile Include="Interfaces\Repositories\IPhotoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificationRepository.cs" />

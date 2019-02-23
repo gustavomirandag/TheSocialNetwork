@@ -49,13 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\SocialNetworkContext.cs" />
-    <Compile Include="Migrations\201902192316184_init.cs" />
-    <Compile Include="Migrations\201902192316184_init.Designer.cs">
-      <DependentUpon>201902192316184_init.cs</DependentUpon>
+    <Compile Include="Migrations\201902230028474_init.cs" />
+    <Compile Include="Migrations\201902230028474_init.Designer.cs">
+      <DependentUpon>201902230028474_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902192323487_profileaddress.cs" />
-    <Compile Include="Migrations\201902192323487_profileaddress.Designer.cs">
-      <DependentUpon>201902192323487_profileaddress.cs</DependentUpon>
+    <Compile Include="Migrations\201902230055272_title.cs" />
+    <Compile Include="Migrations\201902230055272_title.Designer.cs">
+      <DependentUpon>201902230055272_title.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +90,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902192316184_init.resx">
-      <DependentUpon>201902192316184_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902230028474_init.resx">
+      <DependentUpon>201902230028474_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902192323487_profileaddress.resx">
-      <DependentUpon>201902192323487_profileaddress.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902230055272_title.resx">
+      <DependentUpon>201902230055272_title.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

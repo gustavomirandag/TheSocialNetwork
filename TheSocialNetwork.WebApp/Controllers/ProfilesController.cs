@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TheSocialNetwork.AzureStorageAccount;
@@ -17,7 +18,7 @@ namespace TheSocialNetwork.WebApp.Controllers
     public class ProfilesController : Controller
     {
         private ProfileService _profileService = new ProfileService(new ProfileSqlServerRepository());
-        //private SocialNetworkContext db = new SocialNetworkContext();
+        private SocialNetworkContext db = new SocialNetworkContext();
         private readonly PhotoService _fileService;
 
         public ProfilesController()

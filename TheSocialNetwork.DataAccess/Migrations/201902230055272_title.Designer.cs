@@ -7,13 +7,13 @@ namespace TheSocialNetwork.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class profileaddress : IMigrationMetadata
+    public sealed partial class title : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(profileaddress));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(title));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902192323487_profileaddress"; }
+            get { return "201902230055272_title"; }
         }
         
         string IMigrationMetadata.Source

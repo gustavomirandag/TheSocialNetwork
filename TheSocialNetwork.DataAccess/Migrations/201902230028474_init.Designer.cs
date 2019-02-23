@@ -13,7 +13,7 @@ namespace TheSocialNetwork.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201902192316184_init"; }
+            get { return "201902230028474_init"; }
         }
         
         string IMigrationMetadata.Source

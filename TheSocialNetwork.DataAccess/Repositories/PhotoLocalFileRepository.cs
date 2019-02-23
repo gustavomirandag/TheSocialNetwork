@@ -19,5 +19,10 @@ namespace TheSocialNetwork.DataAccess.Repositories
             }
             return @"F:\Blobs\copies\" + photo.FileName;
         }
+
+        public Task<string> CreateAsync(Photo photo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

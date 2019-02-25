@@ -65,9 +65,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repositories\NotificationAzureQueueRepository.cs" />
-    <Compile Include="Repositories\NotificationSqlServerRepository.cs" />
+    <Compile Include="Repositories\NotificationEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\PhotoAzureBlobRepository.cs" />
     <Compile Include="Repositories\PhotoLocalFileRepository.cs" />
+    <Compile Include="Repositories\ProfileEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProfileSqlServerRepository.cs" />
   </ItemGroup>
   <ItemGroup>

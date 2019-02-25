@@ -18,7 +18,7 @@ namespace TheSocialNetwork.UnitTests.DataAccess
 
             //NotificationService
             var notificationService = new NotificationService(
-                new NotificationSqlServerRepository());
+                new NotificationEntityFrameworkRepository());
 
             //Recipient
             var recipient = new Profile

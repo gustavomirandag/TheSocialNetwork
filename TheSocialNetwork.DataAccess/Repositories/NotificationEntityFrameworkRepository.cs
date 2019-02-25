@@ -10,7 +10,7 @@ using TheSocialNetwork.DomainModel.Interfaces.Repositories;
 
 namespace TheSocialNetwork.DataAccess.Repositories
 {
-    public class NotificationSqlServerRepository : INotificationRepository
+    public class NotificationEntityFrameworkRepository : INotificationRepository
     {
         public void Create(Notification notification)
         {

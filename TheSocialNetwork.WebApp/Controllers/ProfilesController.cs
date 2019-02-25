@@ -17,7 +17,7 @@ namespace TheSocialNetwork.WebApp.Controllers
 {
     public class ProfilesController : Controller
     {
-        private ProfileService _profileService = new ProfileService(new ProfileSqlServerRepository());
+        private ProfileService _profileService = new ProfileService(new ProfileEntityFrameworkRepository());
         private SocialNetworkContext db = new SocialNetworkContext();
         private readonly PhotoService _fileService;
 

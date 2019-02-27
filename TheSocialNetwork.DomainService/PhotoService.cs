@@ -17,14 +17,15 @@ namespace TheSocialNetwork.DomainService
         {
             _photoRepository = photoRepository;
         }
+
         public string UploadPhoto(Photo photo)
         {
             return _photoRepository.Create(photo);
         }
 
-        public string UploadPhotoAsync(Photo photo)
+        public async Task<string> UploadPhotoAsync(Photo photo)
         {
-            return _photoRepository.Create(photo);
+            return await _photoRepository.CreateAsync(photo);
         }
     }
 }

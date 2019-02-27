@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TheSocialNetwork.DomainModel.Entities.Notification">
-    <Position X="7.75" Y="2.25" Width="1.5" />
+    <Position X="1.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAiAAAAAgAAgAAEAAAACAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Entities\Notification.cs</FileName>
@@ -10,15 +10,57 @@
   <Class Name="TheSocialNetwork.DomainModel.Entities.Profile">
     <Position X="1.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAgAAAAAQAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAgAAAAAQAAAAIAAACAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Profile.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.File">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAQAAAAAAAAACAAQAABAAAA=</HashCode>
+      <FileName>Entities\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Photo">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Photo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.PhotoAlbum">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAAAgAGAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Entities\PhotoAlbum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.INotificationRepository">
-    <Position X="5" Y="2.75" Width="2.25" />
+    <Position X="4" Y="5.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Repositories\INotificationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IPhotoAlbumRepository">
+    <Position X="1.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IPhotoAlbumRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IPhotoRepository">
+    <Position X="6.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IPhotoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IProfileRepository">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IProfileRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

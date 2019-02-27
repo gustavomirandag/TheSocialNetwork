@@ -134,7 +134,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                         BinaryContent = binaryFile.InputStream,
                         ContentType = binaryFile.ContentType
                     };
-                    string newPhotoUrl = _fileService.UploadPhotoAsync(photo);
+                    string newPhotoUrl = await _fileService.UploadPhotoAsync(photo);
                     profile.PhotoUrl = newPhotoUrl;
                 }
 

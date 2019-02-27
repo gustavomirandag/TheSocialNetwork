@@ -9,7 +9,7 @@ namespace TheSocialNetwork.DomainModel.Entities
     public class PhotoAlbum
     {
         public Guid Id { get; set; }
-        public  Profile ProfileId { get; set; }
+        public  Profile Profile { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }

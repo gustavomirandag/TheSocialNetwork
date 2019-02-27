@@ -4,21 +4,44 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TheSocialNetwork.DataAccess.Contexts;
+using TheSocialNetwork.DataAccess.Repositories;
 using TheSocialNetwork.DomainModel.Entities;
+using TheSocialNetwork.DomainService;
 
 namespace TheSocialNetwork.WebApp.Controllers
 {
     public class PhotoAlbumsController : Controller
     {
         private SocialNetworkContext db = new SocialNetworkContext();
+        private readonly PhotoAlbumService _photoAlbumService;
+
+        public PhotoAlbumsController()
+        {
+            //Simulando uma injeção de dependência
+            _photoAlbumService = new PhotoAlbumService(
+                new PhotoAlbumEntityFrameworkRepository(
+                    new SocialNetworkContext()),
+                    new PhotoAzureBlobRepository());
+        }
 
         // GET: PhotoAlbums
         public ActionResult Index()
         {
-            return View(db.PhotoAlbums.ToList());
+            //var photoAlbums = _photoAlbumService
+            //    .GetAllPhotoAlbums(
+            //        Guid.Parse(Session["profileId"].ToString()
+            //    )
+            //);
+            /*var photoAlbums = db.PhotoAlbums;
+            var profilePhotoAlbums = photoAlbums.Where(p => p.Profile.Id == Guid.Parse(Session["profileId"].ToString()));*/
+
+            var profilePhotoAlbums = db.PhotoAlbums;
+
+            return View(profilePhotoAlbums);
         }
 
         // GET: PhotoAlbums/Details/5
@@ -52,12 +75,36 @@ namespace TheSocialNetwork.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 photoAlbum.Id = Guid.NewGuid();
+                photoAlbum.Profile = db.Profiles.Find(Guid.Parse(Session["profileId"].ToString()));
                 db.PhotoAlbums.Add(photoAlbum);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(photoAlbum);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UploadPhotoAsync()
+        {
+            if (Session["photoAlbumId"] == null)
+                return HttpNotFound();
+
+            var files = Request.Files;
+            for (int i=0; i<files.Count; i++)
+            {
+                var photo = new Photo
+                {
+                    ContainerName = "profilepictures",
+                    FileName = files[i].FileName,
+                    BinaryContent = files[i].InputStream,
+                    ContentType = files[i].ContentType
+                };
+
+                await _photoAlbumService.AddPhotoToAlbumAsync(photo, Guid.Parse(Session["photoAlbumId"].ToString()));
+
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         // GET: PhotoAlbums/Edit/5
@@ -68,6 +115,12 @@ namespace TheSocialNetwork.WebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhotoAlbum photoAlbum = db.PhotoAlbums.Find(id);
+
+            //If it's not my album, show error
+            //if (photoAlbum.Profile.Id != Guid.Parse(Session["profileId"].ToString()))
+            //    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+
+            Session["photoAlbumId"] = photoAlbum.Id;
             if (photoAlbum == null)
             {
                 return HttpNotFound();

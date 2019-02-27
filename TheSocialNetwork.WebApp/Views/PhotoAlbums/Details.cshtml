@@ -34,6 +34,15 @@
             @Html.DisplayFor(model => model.CreationDate)
         </dd>
 
+        <dd>
+            @foreach (var photo in Model.Photos)
+            {
+                <p>
+                    <img src="@photo.Url" />
+                </p>
+            }
+        </dd>
+
     </dl>
 </div>
 <p>

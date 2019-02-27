@@ -3,7 +3,7 @@ namespace TheSocialNetwork.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -40,13 +40,14 @@ namespace TheSocialNetwork.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
+                        Title = c.String(),
                         Description = c.String(),
                         CreationDate = c.DateTime(nullable: false),
-                        ProfileId_Id = c.Guid(),
+                        Profile_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Profiles", t => t.ProfileId_Id)
-                .Index(t => t.ProfileId_Id);
+                .ForeignKey("dbo.Profiles", t => t.Profile_Id)
+                .Index(t => t.Profile_Id);
             
             CreateTable(
                 "dbo.Photos",
@@ -67,12 +68,12 @@ namespace TheSocialNetwork.DataAccess.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.PhotoAlbums", "ProfileId_Id", "dbo.Profiles");
+            DropForeignKey("dbo.PhotoAlbums", "Profile_Id", "dbo.Profiles");
             DropForeignKey("dbo.Photos", "PhotoAlbum_Id", "dbo.PhotoAlbums");
             DropForeignKey("dbo.Notifications", "Sender_Id", "dbo.Profiles");
             DropForeignKey("dbo.Notifications", "Recipient_Id", "dbo.Profiles");
             DropIndex("dbo.Photos", new[] { "PhotoAlbum_Id" });
-            DropIndex("dbo.PhotoAlbums", new[] { "ProfileId_Id" });
+            DropIndex("dbo.PhotoAlbums", new[] { "Profile_Id" });
             DropIndex("dbo.Notifications", new[] { "Sender_Id" });
             DropIndex("dbo.Notifications", new[] { "Recipient_Id" });
             DropTable("dbo.Photos");

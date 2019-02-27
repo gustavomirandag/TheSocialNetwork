@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PhotoAlbumService.cs" />
     <Compile Include="PhotoService.cs" />
     <Compile Include="NotificationService.cs" />
     <Compile Include="ProfileService.cs" />
@@ -51,6 +52,9 @@
       <Project>{A6EE1A28-54AF-43C8-A56C-F83AA4897CF8}</Project>
       <Name>TheSocialNetwork.DomainModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -30,13 +31,31 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Home");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            //HTTP Get
+            HttpResponseMessage response = client.GetAsync("api/profiles").Result;
+            string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
+            Profile[] profiles = Newtonsoft
+                .Json.JsonConvert
+                .DeserializeObject<Profile[]>(serializedProfilesCollection);
+
+            return View(profiles);
+
+            //return RedirectToAction("Index", "Home");
             //return View(db.Profiles.ToList());
         }
 
         // GET: Profiles/Details/5
         public ActionResult Details(Guid? id)
         {
+
+            ViewBag.ProfileId = Guid.NewGuid();
+            Session["profileId"] = Guid.NewGuid();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

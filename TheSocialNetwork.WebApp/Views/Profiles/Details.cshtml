@@ -31,8 +31,24 @@
         </dt>
 
         <dd>
-            <img src="@Model.PhotoUrl" style="max-height:200px;width:auto"/>
+            <img src="@Model.PhotoUrl" style="max-height:200px;width:auto" />
         </dd>
+
+        @foreach (var friend in Model.Friends)
+        {
+            <dt>
+                @Html.DisplayNameFor(modelItem => friend.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => friend.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(modelItem => friend.PhotoUrl)
+            </dt>
+            <dd>
+                <img src="@friend.PhotoUrl" style="max-height:200px;width:auto" />
+            </dd>
+        }
 
     </dl>
 </div>

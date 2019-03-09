@@ -12,13 +12,16 @@ using TheSocialNetwork.AzureStorageAccount;
 using TheSocialNetwork.DataAccess.Contexts;
 using TheSocialNetwork.DataAccess.Repositories;
 using TheSocialNetwork.DomainModel.Entities;
+using TheSocialNetwork.DomainModel.Interfaces.Repositories;
 using TheSocialNetwork.DomainService;
 
 namespace TheSocialNetwork.WebApp.Controllers
 {
     public class ProfilesController : Controller
     {
-        private ProfileService _profileService = new ProfileService(new ProfileEntityFrameworkRepository());
+        private static IProfileRepository _profileRepository = new ProfileEntityFrameworkRepository();
+        private ProfileService _profileService = new ProfileService(_profileRepository);
+        private FriendshipService _friendshipService = new FriendshipService(_profileRepository);
         private SocialNetworkContext db = new SocialNetworkContext();
         private readonly PhotoService _fileService;
 
@@ -31,19 +34,22 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net/");
-            client.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net");
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            //HTTP Get
-            HttpResponseMessage response = client.GetAsync("api/profiles").Result;
-            string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
-            Profile[] profiles = Newtonsoft
-                .Json.JsonConvert
-                .DeserializeObject<Profile[]>(serializedProfilesCollection);
+            ////HTTP Get
+            //HttpResponseMessage response = client.GetAsync("api/profiles").Result;
+            //string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
+            //Profile[] profiles = Newtonsoft
+            //    .Json.JsonConvert
+            //    .DeserializeObject<Profile[]>(serializedProfilesCollection);
 
-            return View(profiles);
+            var unknownProfiles = _friendshipService
+                .GetUnknownProfiles(Guid.Parse(Session["profileId"].ToString()));
+
+            return View(unknownProfiles);
 
             //return RedirectToAction("Index", "Home");
             //return View(db.Profiles.ToList());
@@ -52,10 +58,6 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles/Details/5
         public ActionResult Details(Guid? id)
         {
-
-            ViewBag.ProfileId = Guid.NewGuid();
-            Session["profileId"] = Guid.NewGuid();
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -66,6 +68,18 @@ namespace TheSocialNetwork.WebApp.Controllers
                 return HttpNotFound();
             }
             return View(profile);
+        }
+
+        public ActionResult AddFriend(Guid id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Guid profileId = Guid.Parse(Session["profileId"].ToString());
+            _friendshipService.AddFriend(profileId, id);
+
+            return RedirectToAction("Details", new { id = profileId });
         }
 
         // GET: Profiles/Create

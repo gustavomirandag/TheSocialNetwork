@@ -37,6 +37,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,9 +58,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\SocialNetworkContext.cs" />
+    <Compile Include="Entities\ProfileAzureTableEntity.cs" />
     <Compile Include="Migrations\201902262336489_Init.cs" />
     <Compile Include="Migrations\201902262336489_Init.Designer.cs">
       <DependentUpon>201902262336489_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903082338021_friendship.cs" />
+    <Compile Include="Migrations\201903082338021_friendship.Designer.cs">
+      <DependentUpon>201903082338021_friendship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090010339_loop.cs" />
+    <Compile Include="Migrations\201903090010339_loop.Designer.cs">
+      <DependentUpon>201903090010339_loop.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +108,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902262336489_Init.resx">
       <DependentUpon>201902262336489_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903082338021_friendship.resx">
+      <DependentUpon>201903082338021_friendship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090010339_loop.resx">
+      <DependentUpon>201903090010339_loop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

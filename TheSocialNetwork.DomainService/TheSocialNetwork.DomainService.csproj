@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FriendshipService.cs" />
     <Compile Include="PhotoAlbumService.cs" />
     <Compile Include="PhotoService.cs" />
     <Compile Include="NotificationService.cs" />

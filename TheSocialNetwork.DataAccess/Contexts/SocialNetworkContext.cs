@@ -19,7 +19,20 @@ namespace TheSocialNetwork.DataAccess.Contexts
             : base(TheSocialNetwork.DataAccess.
                   Properties.Settings.Default.DbConnectionString)
         {
+            Configuration.ProxyCreationEnabled = false;
+        }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Profile>()
+                .HasMany(p => p.Friends)
+                .WithMany()
+                .Map(friendship =>
+                {
+                    friendship.MapLeftKey("FriendA");
+                    friendship.MapRightKey("FriendB");
+                    friendship.ToTable("Friendships");
+                });
         }
     }
 }

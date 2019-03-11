@@ -20,8 +20,21 @@ namespace TheSocialNetwork.DomainService
         public void AddFriend(Guid profileId, Guid newFriendId)
         {
             var profile = _profileRepository.Read(profileId);
-            profile.Friends.Add(_profileRepository.Read(newFriendId));
+            var newFriend = _profileRepository.Read(newFriendId);
+            profile.Friends.Add(newFriend);
+            newFriend.Friends.Add(profile);
             _profileRepository.Update(profile);
+            _profileRepository.Update(newFriend);
+        }
+
+        public void UnFriend(Guid profileId, Guid exFriendId)
+        {
+            var profile = _profileRepository.Read(profileId);
+            var exFriend = _profileRepository.Read(exFriendId);
+            profile.Friends.Remove(exFriend);
+            exFriend.Friends.Remove(profile);
+            _profileRepository.Update(profile);
+            _profileRepository.Update(exFriend);
         }
 
         public IEnumerable<Profile> GetFriends(Guid profileId)

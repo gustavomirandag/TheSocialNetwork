@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Friendship.cs" />
+    <Compile Include="Entities\FriendshipRequest.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Photo.cs" />

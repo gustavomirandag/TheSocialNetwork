@@ -33,24 +33,39 @@
         <dd>
             <img src="@Model.PhotoUrl" style="max-height:200px;width:auto" />
         </dd>
+    </dl>
+</div>
 
-        @foreach (var friend in Model.Friends)
-        {
-            <dt>
-                @Html.DisplayNameFor(modelItem => friend.Name)
-            </dt>
+<div>
+    <h4>Profile Friends</h4>
+    <hr />
+    @foreach (var friend in Model.Friends)
+    {
+        <dl class="dl-horizontal">
             <dd>
                 @Html.DisplayFor(modelItem => friend.Name)
             </dd>
-            <dt>
-                @Html.DisplayNameFor(modelItem => friend.PhotoUrl)
-            </dt>
             <dd>
                 <img src="@friend.PhotoUrl" style="max-height:200px;width:auto" />
             </dd>
-        }
+            <dd>
+                @Html.ActionLink("Details", "Details", new { id = friend.Id })
+                @if (Session["profileId"].ToString() == Model.Id.ToString())
+                {
+                    @Html.ActionLink("UnFriend", "UnFriend", new { id = friend.Id })
+                }
+            </dd>
+        </dl>
+    }
+    @if (Model.Friends.Count == 0)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                <h5>No Friends... =(</h5>
+            </dd>
+        </dl>
+    }
 
-    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

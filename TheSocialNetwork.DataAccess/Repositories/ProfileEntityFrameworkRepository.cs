@@ -29,12 +29,13 @@ namespace TheSocialNetwork.DataAccess.Repositories
 
         public Profile Read(Guid profileId)
         {
-            return db.Profiles.Find(profileId);
+            //return db.Profiles.Find(profileId);
+            return db.Profiles.Include(p => p.Friends).SingleOrDefault(p => p.Id == profileId);
         }
 
         public IEnumerable<Profile> ReadAll()
         {
-           return db.Profiles;
+           return db.Profiles.Include(p => p.Friends);
         }
 
         public void Update(Profile profile)

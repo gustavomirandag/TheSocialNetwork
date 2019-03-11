@@ -56,13 +56,13 @@ namespace TheSocialNetwork.WebApp.Controllers
         }
 
         // GET: Profiles/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(Guid id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profiles.Find(id);
+            Profile profile = _profileService.GetProfile(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -78,6 +78,18 @@ namespace TheSocialNetwork.WebApp.Controllers
             }
             Guid profileId = Guid.Parse(Session["profileId"].ToString());
             _friendshipService.AddFriend(profileId, id);
+
+            return RedirectToAction("Details", new { id = profileId });
+        }
+
+        public ActionResult UnFriend(Guid id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Guid profileId = Guid.Parse(Session["profileId"].ToString());
+            _friendshipService.UnFriend(profileId, id);
 
             return RedirectToAction("Details", new { id = profileId });
         }

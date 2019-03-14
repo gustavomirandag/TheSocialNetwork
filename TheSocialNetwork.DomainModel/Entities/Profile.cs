@@ -14,12 +14,12 @@ namespace TheSocialNetwork.DomainModel.Entities
         public string Address { get; set; }
         public string PhotoUrl { get; set; }
         //Anteriormente deixamos dentro de Profile
-        //public virtual ICollection<Profile> Friends { get; set; }
+        public virtual ICollection<Profile> Friends { get; set; }
         public string Country { get; set; }
 
         public Profile()
         {
-            //Friends = new List<Profile>();
+            Friends = new List<Profile>();
         }
 
         public override bool IsValid()

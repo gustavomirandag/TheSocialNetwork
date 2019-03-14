@@ -83,6 +83,7 @@
     <Compile Include="Repositories\PhotoAlbumEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\PhotoAzureBlobRepository.cs" />
     <Compile Include="Repositories\PhotoLocalFileRepository.cs" />
+    <Compile Include="Repositories\PostEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProfileEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProfileSqlServerRepository.cs" />
   </ItemGroup>

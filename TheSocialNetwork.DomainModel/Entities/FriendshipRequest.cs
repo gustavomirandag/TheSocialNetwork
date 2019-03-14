@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheSocialNetwork.DomainModel.Entities
 {
-    public class FriendshipRequest
+    public class FriendshipRequest : EntityBase
     {
         public Profile Requester { get; set; }
         public Profile Requested { get; set; }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TheSocialNetwork.DomainModel.Entities
 {
-    public class Notification
+    public class Notification : EntityBase
     {
-        public Guid Id { get; set; }
         public string Content { get; set; }
         public Profile Sender { get; set; }
         public Profile Recipient { get; set; }
@@ -22,6 +21,11 @@ namespace TheSocialNetwork.DomainModel.Entities
         public override string ToString()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+
+        public override bool IsValid()
+        {
+            return base.IsValid();
         }
     }
 }

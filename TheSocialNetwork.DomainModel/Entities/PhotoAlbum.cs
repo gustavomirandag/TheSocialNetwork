@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TheSocialNetwork.DomainModel.Entities
 {
-    public class PhotoAlbum
+    public class PhotoAlbum : EntityBase
     {
-        public Guid Id { get; set; }
         public  Profile Profile { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

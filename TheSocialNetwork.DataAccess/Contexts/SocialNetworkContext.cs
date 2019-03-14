@@ -14,7 +14,7 @@ namespace TheSocialNetwork.DataAccess.Contexts
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PhotoAlbum> PhotoAlbums { get; set; }
         public DbSet<Photo> Photos { get; set; }
-        //public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
 
         public SocialNetworkContext() 
             : base(TheSocialNetwork.DataAccess.
@@ -25,15 +25,15 @@ namespace TheSocialNetwork.DataAccess.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Profile>()
-                .HasMany(p => p.Friends)
-                .WithMany()
-                .Map(friendship =>
-                {
-                    friendship.MapLeftKey("FriendA");
-                    friendship.MapRightKey("FriendB");
-                    friendship.ToTable("Friendships");
-                });
+            //modelBuilder.Entity<Profile>()
+            //    .HasMany(p => p.Friends)
+            //    .WithMany()
+            //    .Map(friendship =>
+            //    {
+            //        friendship.MapLeftKey("FriendA");
+            //        friendship.MapRightKey("FriendB");
+            //        friendship.ToTable("Friendships");
+            //    });
         }
     }
 }

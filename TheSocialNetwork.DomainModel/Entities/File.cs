@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace TheSocialNetwork.DomainModel.Entities
 {
-    public class File
+    public class File : EntityBase
     {
-        public Guid Id { get; set; }
         public string ContainerName { get; set; }
         public string FileName { get; set; }
         [NotMapped]

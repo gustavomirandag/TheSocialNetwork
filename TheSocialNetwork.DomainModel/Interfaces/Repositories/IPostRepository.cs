@@ -7,12 +7,16 @@ using TheSocialNetwork.DomainModel.Entities;
 
 namespace TheSocialNetwork.DomainModel.Interfaces.Repositories
 {
-    public interface IProfileRepository
+    public interface IPostRepository
     {
-        void Create(Profile profile);
-        Profile Read(Guid post);
-        IEnumerable<Profile> ReadAll();
-        void Update(Profile profile);
-        void Delete(Guid post);
+        void Create(Post post);
+
+        void Delete(Guid postId);
+
+        Post Read(Guid postId);
+
+        IEnumerable<Post> ReadAll();
+
+        void Update(Post post);
     }
 }

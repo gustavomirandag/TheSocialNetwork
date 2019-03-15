@@ -43,9 +43,9 @@ namespace TheSocialNetwork.DomainService
             return _photoAlbumRepository.ReadAll();
         }
 
-        public IEnumerable<PhotoAlbum> GetAllPhotoAlbums(Guid profileId)
+        public IEnumerable<PhotoAlbum> GetAllPhotoAlbums(Guid post)
         {
-            return _photoAlbumRepository.ReadAll().Where(photoAlbum => photoAlbum.Profile.Id == profileId);
+            return _photoAlbumRepository.ReadAll().Where(photoAlbum => photoAlbum.Profile.Id == post);
         }
     }
 }

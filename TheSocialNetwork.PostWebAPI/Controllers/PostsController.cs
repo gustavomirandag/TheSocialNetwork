@@ -13,6 +13,7 @@ using TheSocialNetwork.DomainModel.Entities;
 
 namespace TheSocialNetwork.PostWebAPI.Controllers
 {
+    [Authorize]
     public class PostsController : ApiController
     {
         private SocialNetworkContext db = new SocialNetworkContext();

@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TheSocialNetwork.DataAccess.Contexts;
@@ -18,7 +20,20 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = 
+                new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            //Http Get
+            HttpResponseMessage response = httpClient.GetAsync("/api/posts").Result;
+            string serializedPostsCollection = response.Content.ReadAsStringAsync().Result;
+            Post[] posts = Newtonsoft
+                .Json.JsonConvert
+                .DeserializeObject<Post[]>(serializedPostsCollection);
+
+            return View(posts.ToList());
         }
 
         // GET: Posts/Details/5
@@ -52,8 +67,21 @@ namespace TheSocialNetwork.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 post.Id = Guid.NewGuid();
-                db.Posts.Add(post);
-                db.SaveChanges();
+
+                //==== Acesso a PostWebAPI ====
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress =
+                    new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+                httpClient.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                string serializedPost = Newtonsoft.Json.JsonConvert.SerializeObject(post);
+                var httpContent = new StringContent(serializedPost, Encoding.UTF8, "application/json");
+
+                //Http Post
+                HttpResponseMessage response = httpClient.PostAsync("/api/posts",httpContent).Result;
+                //=============================
+
                 return RedirectToAction("Index");
             }
 
@@ -84,8 +112,19 @@ namespace TheSocialNetwork.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
+                //==== Acesso a PostWebAPI ====
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress =
+                    new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+                httpClient.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                string serializedPost = Newtonsoft.Json.JsonConvert.SerializeObject(post);
+                var httpContent = new StringContent(serializedPost, Encoding.UTF8, "application/json");
+
+                //Http Post
+                HttpResponseMessage response = httpClient.PutAsync($"/api/posts/{post.Id}", httpContent).Result;
+                //=============================
                 return RedirectToAction("Index");
             }
             return View(post);
@@ -111,9 +150,16 @@ namespace TheSocialNetwork.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
+            //==== Acesso a PostWebAPI ====
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress =
+                new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            //Http Post
+            HttpResponseMessage response = httpClient.DeleteAsync($"/api/posts/{id}").Result;
+            //=============================
             return RedirectToAction("Index");
         }
 

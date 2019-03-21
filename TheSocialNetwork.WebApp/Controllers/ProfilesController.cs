@@ -45,7 +45,7 @@ namespace TheSocialNetwork.WebApp.Controllers
             //Profile[] profiles = Newtonsoft
             //    .Json.JsonConvert
             //    .DeserializeObject<Profile[]>(serializedProfilesCollection);
-
+            
             var unknownProfiles = _friendshipService
                 .GetUnknownProfiles(Guid.Parse(Session["profileId"].ToString()));
 

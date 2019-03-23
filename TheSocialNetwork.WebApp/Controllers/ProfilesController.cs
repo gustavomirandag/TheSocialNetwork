@@ -34,18 +34,18 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net");
-            //client.DefaultRequestHeaders.Accept.Add(
-            //    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net");
+            client.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            ////HTTP Get
-            //HttpResponseMessage response = client.GetAsync("api/profiles").Result;
-            //string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
-            //Profile[] profiles = Newtonsoft
-            //    .Json.JsonConvert
-            //    .DeserializeObject<Profile[]>(serializedProfilesCollection);
-            
+            //HTTP Get
+            HttpResponseMessage response = client.GetAsync("api/profiles").Result;
+            string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
+            Profile[] profiles = Newtonsoft
+                .Json.JsonConvert
+                .DeserializeObject<Profile[]>(serializedProfilesCollection);
+
             var unknownProfiles = _friendshipService
                 .GetUnknownProfiles(Guid.Parse(Session["profileId"].ToString()));
 

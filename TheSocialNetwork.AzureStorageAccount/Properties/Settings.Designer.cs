@@ -25,7 +25,9 @@ namespace TheSocialNetwork.AzureStorageAccount.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COLOQUE AQUI SUA STRING DE CONEXÃO PARA O STORAGE ACCOUNT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DefaultEndpointsProtocol=https;AccountName=thesocialnetworkaccount;AccountKey=Zzh" +
+            "ZOXSjGCqWsXo3CIQY9onpUiRuP9GgYJg+PxDHZlFdWjO5aOPGkQ3CVThvWxTsdVfn9eGuQJ6DzHB8jFM" +
+            "sHA==;EndpointSuffix=core.windows.net")]
         public string StorageAccountConnectionString {
             get {
                 return ((string)(this["StorageAccountConnectionString"]));

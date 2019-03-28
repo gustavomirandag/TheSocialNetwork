@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheSocialNetwork.AzureStorageAccount.Properties {
+namespace TheSocialNetwork.WebApp.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,12 +25,10 @@ namespace TheSocialNetwork.AzureStorageAccount.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DefaultEndpointsProtocol=https;AccountName=thesocialnetworkaccount;AccountKey=PHZ" +
-            "nR6vA++eF2tAhVTh3eF4143EPTzGiW54b22PPSYKj68e8eRtubYGgl44GHwOKO07B3jnmyIHhTeN6424" +
-            "MOA==;EndpointSuffix=core.windows.net")]
-        public string StorageAccountConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:50563/")]
+        public string PostWebApiBaseURI {
             get {
-                return ((string)(this["StorageAccountConnectionString"]));
+                return ((string)(this["PostWebApiBaseURI"]));
             }
         }
     }

@@ -3,20 +3,20 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-<ul class="nav navbar-nav navbar-left">
-    <li>
-        @Html.ActionLink("My Profile", "Details", "Profiles", routeValues: new { id = User.Identity.GetUserId() }, htmlAttributes: null)
-    </li>
-    <li>
-        @Html.ActionLink("Find Friends", "Index", "Profiles")
-    </li>
-    <li>
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-    </li>
-    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-</ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                @Html.ActionLink("My Profile", "Details", "Profiles", routeValues: new { id = User.Identity.GetUserId() }, htmlAttributes: null)
+            </li>
+            <li>
+                @Html.ActionLink("Find Friends", "Index", "Profiles")
+            </li>
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else

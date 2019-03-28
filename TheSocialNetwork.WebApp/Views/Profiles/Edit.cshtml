@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="hidden" value="@Model.PhotoUrl"/>
+                <input name="PhotoUrl" type="hidden" value="@Model.PhotoUrl" />
                 <input name="binaryFile" type="file" class="form-control" />
                 @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
             </div>

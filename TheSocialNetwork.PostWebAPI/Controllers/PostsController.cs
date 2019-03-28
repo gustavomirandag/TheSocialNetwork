@@ -25,16 +25,16 @@ namespace TheSocialNetwork.PostWebAPI.Controllers
         }
 
         // GET: api/Posts/5
-        [ResponseType(typeof(Post))]
-        public IHttpActionResult GetPost(Guid id)
+        [ResponseType(typeof(Post[]))]
+        public IHttpActionResult GetPostsFromOrForUser(Guid id)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Post[] posts = db.Posts.Where(p => p.Sender.Id == id || p.Recipient.Id == id).ToArray();
+            if (posts == null)
             {
                 return NotFound();
             }
 
-            return Ok(post);
+            return Ok(posts);
         }
 
         // PUT: api/Posts/5
@@ -81,13 +81,17 @@ namespace TheSocialNetwork.PostWebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (post.Sender != null)
+                post.Sender = db.Profiles.Find(post.Sender.Id);
+            if (post.Recipient != null)
+                post.Recipient = db.Profiles.Find(post.Recipient.Id);
             db.Posts.Add(post);
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
                 if (PostExists(post.Id))
                 {

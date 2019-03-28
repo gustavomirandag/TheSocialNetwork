@@ -82,6 +82,8 @@ namespace TheSocialNetwork.WebApp.Controllers
                 case SignInStatus.Success:
                     //return RedirectToLocal(returnUrl);
                     Session["profileId"] = SignInManager.UserManager.FindByEmail(model.Email).Id;
+                    Session["profileIdentityUsername"] = model.Email;
+                    Session["profileIdentityPassword"] = model.Password;
                     return RedirectToAction("Details", "Profiles",new { @id = Session["profileId"].ToString() });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -162,6 +164,8 @@ namespace TheSocialNetwork.WebApp.Controllers
 
                     //Ligar o usuário do Identity com um Profile
                     Session["profileId"] = Guid.Parse(user.Id);
+                    Session["profileIdentityUsername"] = model.Email;
+                    Session["profileIdentityPassword"] = model.Password;
 
                     //Redirecionar para a página de criação de profile
                     return RedirectToAction("Create", "Profiles");

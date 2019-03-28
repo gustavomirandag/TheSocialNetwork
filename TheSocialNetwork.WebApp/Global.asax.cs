@@ -17,5 +17,6 @@ namespace TheSocialNetwork.WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
     }
 }

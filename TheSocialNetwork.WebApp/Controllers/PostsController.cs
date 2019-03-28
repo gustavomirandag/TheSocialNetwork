@@ -20,7 +20,7 @@ namespace TheSocialNetwork.WebApp.Controllers
     {
         private SocialNetworkContext db = new SocialNetworkContext();
 
-        private static async Task<string> GetAPIToken(string userName, string password, string apiBaseUri)
+        public static async Task<string> GetAPIToken(string userName, string password, string apiBaseUri)
         {
             using (var client = new HttpClient())
             {
@@ -39,7 +39,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                 });
 
                 //send request
-                HttpResponseMessage responseMessage = await client.PostAsync("/Token", formContent);
+                HttpResponseMessage responseMessage = client.PostAsync("/Token", formContent).Result;
 
                 //get access token from response body
                 var responseJson = await responseMessage.Content.ReadAsStringAsync();
@@ -48,34 +48,16 @@ namespace TheSocialNetwork.WebApp.Controllers
             }
         }
 
-        static async Task<string> GetRequest(string token, string apiBaseUri, string requestPath)
-        {
-            using (var client = new HttpClient())
-            {
-                //setup client
-                client.BaseAddress = new Uri(apiBaseUri);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-
-                //make request
-                HttpResponseMessage response = await client.GetAsync(requestPath);
-                var responseString = await response.Content.ReadAsStringAsync();
-                return responseString;
-            }
-        }
-
         // GET: Posts
         public ActionResult Index()
         {
-            string token = GetAPIToken("romulo@al.infnet.edu.br", "@dsInf123",
-               "https://thesocialnetworkpostauthwebapi2.azurewebsites.net").Result;
-
-
+            string token = GetAPIToken(Session["profileIdentityUsername"].ToString(), 
+                Session["profileIdentityPassword"].ToString(),
+               WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
 
             var httpClient = new HttpClient();
             httpClient.BaseAddress = 
-                new Uri("https://thesocialnetworkpostauthwebapi2.azurewebsites.net");
+                new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
@@ -91,13 +73,34 @@ namespace TheSocialNetwork.WebApp.Controllers
         }
 
         // GET: Posts/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(Guid id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+
+            //======= Web API Access =======
+            string token = GetAPIToken(Session["profileIdentityUsername"].ToString(),
+                Session["profileIdentityPassword"].ToString(),
+                WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
+
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+            //Http Get
+            HttpResponseMessage response = httpClient.GetAsync($"/api/posts/{id}").Result;
+            string serializedPost = response.Content.ReadAsStringAsync().Result;
+            Post post = Newtonsoft
+                .Json.JsonConvert
+                .DeserializeObject<Post>(serializedPost);
+            //==============================
+
+
+
             if (post == null)
             {
                 return HttpNotFound();
@@ -123,11 +126,17 @@ namespace TheSocialNetwork.WebApp.Controllers
                 post.Id = Guid.NewGuid();
 
                 //==== Acesso a PostWebAPI ====
+                string token = GetAPIToken(Session["profileIdentityUsername"].ToString(),
+                    Session["profileIdentityPassword"].ToString(),
+                    WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
+
                 var httpClient = new HttpClient();
-                httpClient.BaseAddress =
-                    new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+                httpClient.BaseAddress = new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
                 httpClient.DefaultRequestHeaders.Accept.Add(
                     new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+                post.Sender = db.Profiles.Find(Guid.Parse(Session["profileId"].ToString()));
 
                 string serializedPost = Newtonsoft.Json.JsonConvert.SerializeObject(post);
                 var httpContent = new StringContent(serializedPost, Encoding.UTF8, "application/json");
@@ -167,11 +176,15 @@ namespace TheSocialNetwork.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 //==== Acesso a PostWebAPI ====
+                string token = GetAPIToken(Session["profileIdentityUsername"].ToString(),
+                    Session["profileIdentityPassword"].ToString(),
+                    WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
+
                 var httpClient = new HttpClient();
-                httpClient.BaseAddress =
-                    new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+                httpClient.BaseAddress = new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
                 httpClient.DefaultRequestHeaders.Accept.Add(
                     new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
 
                 string serializedPost = Newtonsoft.Json.JsonConvert.SerializeObject(post);
                 var httpContent = new StringContent(serializedPost, Encoding.UTF8, "application/json");
@@ -205,11 +218,15 @@ namespace TheSocialNetwork.WebApp.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             //==== Acesso a PostWebAPI ====
+            string token = GetAPIToken(Session["profileIdentityUsername"].ToString(),
+                Session["profileIdentityPassword"].ToString(),
+                WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
+
             var httpClient = new HttpClient();
-            httpClient.BaseAddress =
-                new Uri("https://thesocialnetworkpostwebapi.azurewebsites.net");
+            httpClient.BaseAddress = new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
 
             //Http Post
             HttpResponseMessage response = httpClient.DeleteAsync($"/api/posts/{id}").Result;

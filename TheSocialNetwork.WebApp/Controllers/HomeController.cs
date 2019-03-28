@@ -11,10 +11,6 @@ namespace TheSocialNetwork.WebApp.Controllers
     {
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated)
-            {
-                Session["profileId"] = User.Identity.GetUserId();
-            }
             return View();
         }
 

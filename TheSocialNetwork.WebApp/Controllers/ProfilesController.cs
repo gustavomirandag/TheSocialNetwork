@@ -40,7 +40,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             //HTTP Get
-            HttpResponseMessage response = client.GetAsync("api/profiles").Result;
+            HttpResponseMessage response = client.GetAsync("/api/profiles").Result;
             string serializedProfilesCollection = response.Content.ReadAsStringAsync().Result;
             Profile[] profiles = Newtonsoft
                 .Json.JsonConvert
@@ -63,6 +63,29 @@ namespace TheSocialNetwork.WebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Profile profile = _profileService.GetProfile(id);
+
+            //====== Web API - Get Profile Posts =====
+            string token = PostsController.GetAPIToken(Session["profileIdentityUsername"].ToString(),
+                Session["profileIdentityPassword"].ToString(),
+               WebApp.Properties.Settings.Default.PostWebApiBaseURI).Result;
+
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress =
+                new Uri(WebApp.Properties.Settings.Default.PostWebApiBaseURI);
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+            //Http Get
+            HttpResponseMessage response = httpClient.GetAsync($"/api/posts/{id}").Result;
+            string serializedPostsCollection = response.Content.ReadAsStringAsync().Result;
+            Post[] posts = Newtonsoft
+                .Json.JsonConvert
+                .DeserializeObject<Post[]>(serializedPostsCollection);
+            //========================================
+
+            ViewBag.Posts = posts;
+
             if (profile == null)
             {
                 return HttpNotFound();
@@ -183,9 +206,9 @@ namespace TheSocialNetwork.WebApp.Controllers
                     profile.PhotoUrl = newPhotoUrl;
                 }
 
-                db.Entry(profile).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                _profileService.UpdateProfile(profile);
+
+                return RedirectToAction("Details", new { @id = Session["profileId"].ToString() });
             }
             return View(profile);
         }

@@ -36,6 +36,30 @@
     </dl>
 </div>
 
+
+<div>
+    <h4>Profile Posts</h4>
+    <hr />
+    @foreach (var post in ViewBag.Posts)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                <b>@post.PublishDateTime</b> - @post.Content
+            </dd>
+        </dl>
+    }
+    @if (ViewBag.Posts.Length == 0)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                <h5>Empty Timeline =(</h5>
+            </dd>
+        </dl>
+    }
+
+</div>
+
+
 <div>
     <h4>Profile Friends</h4>
     <hr />
@@ -68,6 +92,9 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (Session["profileId"].ToString() == Model.Id.ToString())
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheSocialNetwork.DomainModel.Entities.EntityBase" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\EntityBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.File" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAQAAAAAAAAACAAQAABAAAA=</HashCode>
+      <FileName>Entities\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Friendship" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Friendship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.FriendshipRequest" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\FriendshipRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Group">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.GroupProfile">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Entities\GroupProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Notification" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAgAAgAAEAAgACAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Entities\Notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Photo" Collapsed="true">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Photo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.PhotoAlbum" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAGAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Entities\PhotoAlbum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Post" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Entities\Post.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Entities.Profile" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAgAgAAAQAAAIIAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Specifications.ProfileSpecs.ProfileEntityValidation" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Specifications\ProfileSpecs\IProfileEntityValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheSocialNetwork.DomainModel.Specifications.ProfileSpecs.IsNotEmptyProfileAddress" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Specifications\ProfileSpecs\IsNotEmptyProfileAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.INotificationRepository" Collapsed="true">
+    <Position X="21.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\INotificationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IPhotoAlbumRepository" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IPhotoAlbumRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IPhotoRepository" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IPhotoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IPostRepository" Collapsed="true">
+    <Position X="21.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IPostRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Interfaces.Repositories.IProfileRepository" Collapsed="true">
+    <Position X="23" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Repositories\IProfileRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheSocialNetwork.DomainModel.Specifications.IEntityValidation" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Specifications\IEntityValidation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -50,6 +50,8 @@
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\Friendship.cs" />
     <Compile Include="Entities\FriendshipRequest.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\GroupProfile.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Photo.cs" />
@@ -69,6 +71,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

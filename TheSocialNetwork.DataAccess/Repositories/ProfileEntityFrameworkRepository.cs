@@ -40,7 +40,12 @@ namespace TheSocialNetwork.DataAccess.Repositories
 
         public void Update(Profile profile)
         {
-            db.Entry(profile).State = EntityState.Modified;
+            Profile originalProfile = db.Profiles.Find(profile.Id);
+            originalProfile.Name = profile.Name;
+            originalProfile.PhotoUrl = profile.PhotoUrl;
+            originalProfile.Birthday = profile.Birthday;
+
+            db.Entry(originalProfile).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

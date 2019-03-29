@@ -14,8 +14,10 @@ namespace TheSocialNetwork.DataAccess.Contexts
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PhotoAlbum> PhotoAlbums { get; set; }
         public DbSet<Photo> Photos { get; set; }
-        //public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<ProfileGroup> ProfilesGroups { get; set; }
 
         public SocialNetworkContext() 
             : base(TheSocialNetwork.DataAccess.

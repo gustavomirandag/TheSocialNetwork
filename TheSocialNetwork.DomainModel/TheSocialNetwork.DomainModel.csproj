@@ -47,17 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\EntityBase.cs" />
-    <Compile Include="Entities\Friendship.cs" />
-    <Compile Include="Entities\FriendshipRequest.cs" />
     <Compile Include="Entities\Group.cs" />
-    <Compile Include="Entities\GroupProfile.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\PhotoAlbum.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Profile.cs" />
+    <Compile Include="Entities\ProfileGroup.cs" />
     <Compile Include="Interfaces\Repositories\IPhotoAlbumRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPhotoRepository.cs" />
     <Compile Include="Interfaces\Repositories\INotificationRepository.cs" />

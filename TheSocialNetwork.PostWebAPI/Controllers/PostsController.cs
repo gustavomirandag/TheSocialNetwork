@@ -85,6 +85,8 @@ namespace TheSocialNetwork.PostWebAPI.Controllers
                 post.Sender = db.Profiles.Find(post.Sender.Id);
             if (post.Recipient != null)
                 post.Recipient = db.Profiles.Find(post.Recipient.Id);
+            if (post.Group != null)
+                post.Group = db.Groups.Find(post.Group.Id);
             db.Posts.Add(post);
 
             try

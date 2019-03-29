@@ -1,0 +1,77 @@
+﻿@model TheSocialNetwork.DomainModel.Entities.Group
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Group Messages
+        </dt>
+    </dl>
+
+    <p></p>
+
+    @foreach (var post in ViewBag.Posts)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @post.Sender.Name
+            </dt>
+
+            <dd>
+                @post.Content
+            </dd>
+        </dl>
+    }
+
+
+<div>
+    <h4>Group Members</h4>
+    <hr />
+    @foreach (var member in ViewBag.Members)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                @member.Name
+            </dd>
+            <dd>
+                <img src="@member.PhotoUrl" style="max-height:200px;width:auto" />
+            </dd>
+            <dd>
+                @Html.ActionLink("Details", "Details", new { id = member.Id })
+            </dd>
+        </dl>
+    }
+    @if (ViewBag.Members.Count == 0)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                <h5>No Members... =(</h5>
+            </dd>
+        </dl>
+    }
+
+</div>
+
+<p>
+    @Html.ActionLink("Create", "Create", "Posts")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

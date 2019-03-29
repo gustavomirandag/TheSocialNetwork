@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TheSocialNetwork.DomainModel.Entities
 {
-    public class GroupProfile
+    public class ProfileGroup : EntityBase
     {
-        public Group Group { get; set; }
         public Profile Profile { get; set; }
+        public Group Group { get; set; }
     }
 }

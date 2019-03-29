@@ -137,6 +137,12 @@ namespace TheSocialNetwork.WebApp.Controllers
                 httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
 
                 post.Sender = db.Profiles.Find(Guid.Parse(Session["profileId"].ToString()));
+                if (Session["groupId"] != null)
+                {
+                    post.Group = db.Groups.Find(Guid.Parse(Session["groupId"].ToString()));
+                    Session.Remove("groupId");
+                }
+
 
                 string serializedPost = Newtonsoft.Json.JsonConvert.SerializeObject(post);
                 var httpContent = new StringContent(serializedPost, Encoding.UTF8, "application/json");

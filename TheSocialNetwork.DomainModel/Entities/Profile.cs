@@ -13,7 +13,6 @@ namespace TheSocialNetwork.DomainModel.Entities
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
         public string PhotoUrl { get; set; }
-        //Anteriormente deixamos dentro de Profile
         public virtual ICollection<Profile> Friends { get; set; }
         public string Country { get; set; }
 

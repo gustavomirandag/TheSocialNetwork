@@ -40,6 +40,7 @@
 <div>
     <h4>Profile Posts</h4>
     <hr />
+    @Html.ActionLink("Create Post", "Create", "Posts")
     @foreach (var post in ViewBag.Posts)
     {
         <dl class="dl-horizontal">
@@ -48,7 +49,7 @@
             </dd>
         </dl>
     }
-    @if (ViewBag.Posts.Length == 0)
+    @if (ViewBag.Posts.Count == 0)
     {
         <dl class="dl-horizontal">
             <dd>

@@ -58,6 +58,8 @@ namespace TheSocialNetwork.WebApp.Controllers
         // GET: Profiles/Details/5
         public ActionResult Details(Guid id)
         {
+            Session["groupId"] = null;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +86,7 @@ namespace TheSocialNetwork.WebApp.Controllers
                 .DeserializeObject<Post[]>(serializedPostsCollection);
             //========================================
 
-            ViewBag.Posts = posts;
+            ViewBag.Posts = posts.OrderBy(p => p.PublishDateTime).ToList();
 
             if (profile == null)
             {

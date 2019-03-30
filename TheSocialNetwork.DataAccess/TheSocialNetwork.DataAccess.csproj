@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201903282353382_groups.Designer.cs">
       <DependentUpon>201903282353382_groups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903300010424_comment_publishdatetime.cs" />
+    <Compile Include="Migrations\201903300010424_comment_publishdatetime.Designer.cs">
+      <DependentUpon>201903300010424_comment_publishdatetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903282353382_groups.resx">
       <DependentUpon>201903282353382_groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903300010424_comment_publishdatetime.resx">
+      <DependentUpon>201903300010424_comment_publishdatetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

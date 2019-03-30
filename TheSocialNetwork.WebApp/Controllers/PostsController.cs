@@ -140,7 +140,6 @@ namespace TheSocialNetwork.WebApp.Controllers
                 if (Session["groupId"] != null)
                 {
                     post.Group = db.Groups.Find(Guid.Parse(Session["groupId"].ToString()));
-                    Session.Remove("groupId");
                 }
 
 
@@ -151,10 +150,12 @@ namespace TheSocialNetwork.WebApp.Controllers
                 HttpResponseMessage response = httpClient.PostAsync("/api/posts",httpContent).Result;
                 //=============================
 
-                return RedirectToAction("Index");
             }
 
-            return View(post);
+            //return View(post);
+            if (Session["groupId"] != null)
+                return RedirectToAction("Details", "Groups", new { id = Session["groupId"] });
+            return RedirectToAction("Details", "Profiles", new { id = Session["profileId"] });
         }
 
         // GET: Posts/Edit/5

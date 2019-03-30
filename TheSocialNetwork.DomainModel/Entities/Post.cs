@@ -16,5 +16,10 @@ namespace TheSocialNetwork.DomainModel.Entities
 
         public DateTime PublishDateTime { get; set; }
         public string Content { get; set; }
+
+        public Post()
+        {
+            PublishDateTime = DateTime.Now;
+        }
     }
 }

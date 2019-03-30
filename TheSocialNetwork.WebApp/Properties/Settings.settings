@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="PostWebApiBaseURI" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:50563/</Value>
+      <Value Profile="(Default)">COLOQUE AQUI A URL DO WEB API DE POST</Value>
+    </Setting>
+    <Setting Name="ProfileWebApiBaseURI" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">COLOQUE AQUI A URL DO WEB API DE PROFILE</Value>
     </Setting>
   </Settings>
 </SettingsFile>

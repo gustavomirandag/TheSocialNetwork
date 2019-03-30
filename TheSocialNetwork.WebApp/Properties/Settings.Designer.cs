@@ -25,10 +25,19 @@ namespace TheSocialNetwork.WebApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:50563/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COLOQUE AQUI A URL DO WEB API DE POST")]
         public string PostWebApiBaseURI {
             get {
                 return ((string)(this["PostWebApiBaseURI"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COLOQUE AQUI A URL DO WEB API DE PROFILE")]
+        public string ProfileWebApiBaseURI {
+            get {
+                return ((string)(this["ProfileWebApiBaseURI"]));
             }
         }
     }

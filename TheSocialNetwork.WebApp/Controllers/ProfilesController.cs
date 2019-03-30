@@ -35,7 +35,7 @@ namespace TheSocialNetwork.WebApp.Controllers
         public ActionResult Index()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://thesocialnetworkprofilewebapi20190227095906.azurewebsites.net");
+            client.BaseAddress = new Uri(WebApp.Properties.Settings.Default.ProfileWebApiBaseURI);
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 

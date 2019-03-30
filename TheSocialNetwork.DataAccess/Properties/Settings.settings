@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DbConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Server=tcp:amazingstoradseserver.database.windows.net,1433;Initial Catalog=amazingStoreAdsDb;Persist Security Info=False;User ID=alexandre;Password=@dsInf123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
+      <Value Profile="(Default)">COLOQUE AQUI SUA STRING DE CONEXÃO COM O BANCO DE DADOS</Value>
     </Setting>
   </Settings>
 </SettingsFile>

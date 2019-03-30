@@ -12,7 +12,7 @@ namespace TheSocialNetwork.DataAccess.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,10 +25,7 @@ namespace TheSocialNetwork.DataAccess.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=tcp:amazingstoradseserver.database.windows.net,1433;Initial Catalog=amazin" +
-            "gStoreAdsDb;Persist Security Info=False;User ID=alexandre;Password=@dsInf123;Mul" +
-            "tipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection" +
-            " Timeout=30;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COLOQUE AQUI SUA STRING DE CONEXÃO COM O BANCO DE DADOS")]
         public string DbConnectionString {
             get {
                 return ((string)(this["DbConnectionString"]));

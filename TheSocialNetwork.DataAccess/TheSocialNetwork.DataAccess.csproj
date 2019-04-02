@@ -98,6 +98,7 @@
     <Compile Include="Repositories\PostEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProfileEntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProfileSqlServerRepository.cs" />
+    <Compile Include="Repositories\ProfileStoredProcedureRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

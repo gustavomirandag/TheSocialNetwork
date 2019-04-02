@@ -37,6 +37,11 @@ namespace TheSocialNetwork.DomainService
             return _profileRepository.Read(profileId);
         }
 
+        public IEnumerable<Profile> GetAllProfiles()
+        {
+            return _profileRepository.ReadAll();
+        }
+
         public IEnumerable<Profile> SearchProfileByName(string name)
         {
             return _profileRepository.ReadAll()
